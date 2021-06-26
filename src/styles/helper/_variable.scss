@@ -1,0 +1,54 @@
+// variable color
+$color-orange-0: #fb4226;
+$color-black-0: #333;
+$color-black-1: #222222;
+$color-black-2: #000;
+$color-black-3: #222; //footer background
+$color-gray-0: #9b9b9b;
+$color-gray-1: #818181;
+$color-gray-2: #c6c6c6;
+$color-gray-3: #fafafa;
+$color-gray-4: #949494;
+$color-gray-5: #e9e9e9;
+$color-gray-6: #d8d8d8;
+$color-gray-7: #4a4a4a;
+$color-green-0: #00ac4d;
+$color-green-1: #a1d066;
+$color-green-2: #108f3e;
+$color-blue-0: #60c5ef;
+$color-yellow-0: #e2a000;
+// variable font-size
+$fs-80:12px;
+$fs-0: 14px;
+$fs-1: 16px;
+$fs-2: 18px;
+$fs-3: 24px;
+$fs-4: 42px;
+
+
+//variable font-weight
+$fw-normal: normal;
+$fw-bold-0: 600;
+$fw-bold-1: 700;
+$fw-bold: bold;
+
+// line-height:
+$ling-height: 1.42857143;
+
+// padding: 
+$pd-0: 5px;
+$pd-1: 10px;
+$pd-2: 20px;
+
+// margin: 
+$mg-0: 5px;
+$mg-1: 10px;
+$mg-2: 20px;
+
+//break points
+$breakpoints:(
+    'extra-large': 1200px,
+    'large' : 992px,
+    'medium' : 768px,
+    'small' : 576px, 
+)

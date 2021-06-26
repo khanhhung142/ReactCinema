@@ -1,0 +1,33 @@
+.admin-custom {
+    &__sidenav {
+        background-color: #212529 !important;
+    }
+    .form {
+        margin-top: 30px;
+        .preview-img {
+            width: 360px;
+            height: 200px;
+            border-radius: 5px;
+            border: 1px dashed rgb(70, 184, 219);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            color: rgb(70, 184, 219);
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.513);
+            }
+        }
+        .err-msg {
+            color: red;
+            padding: 10px 10px;
+        }
+    }
+    .btn-tb {
+        margin: 10px;
+    }
+    h1 {
+        margin-bottom: 30px;
+    }
+}

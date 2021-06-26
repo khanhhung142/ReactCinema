@@ -1,0 +1,154 @@
+.cinemaComplex {
+  &__content {
+    &--logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      width: 100%;
+      a {
+        padding: 20px;
+        position: relative;
+        transition: 0.1s;
+        cursor: pointer;
+        opacity: 0.35;
+        img {
+          width: 70px;
+          pointer-events: none;
+        }
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    &--list {
+      border: 1px solid #ebebec;
+      min-height: 705px;
+      overflow-y: hidden;
+    }
+    &--listCinema {
+      border-right: 1px solid #ebebec;
+      .cinema {
+        display: block;
+        opacity: 0.5;
+        padding: 20px;
+        cursor: pointer;
+        position: relative;
+        transition: 0.1s;
+        img {
+          width: 50px;
+          float: left;
+          pointer-events: none;
+        }
+        .info {
+          padding-left: 60px;
+          pointer-events: none;
+          h1 {
+            @include styleText($color-green-0, $fs-0, $fw-bold);
+          }
+          p {
+            color: $color-gray-4;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          span {
+            color: $color-orange-0;
+          }
+        }
+        &:hover {
+          opacity: 1;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: calc(100% - 40px);
+          transform: translateX(-50%);
+          border-bottom: 1px solid #fff;
+          border-color: rgba(238, 238, 238, 0.88);
+        }
+      }
+    }
+    &--listSchedule {
+      padding: 20px;
+      .filmSchedule {
+        position: relative;
+        width: 100%;   
+        a {
+          text-decoration: none;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -10%;
+          left: 50%;
+          width: calc(100% - 40px);
+          transform: translateX(-50%);
+          border-bottom: 1px solid #fff;
+          border-color: rgba(238, 238, 238, 0.88);
+        }
+        .info {
+          cursor: pointer;
+          min-height: 80px;
+          img {
+            width: 50px;
+            float: left;
+          }
+          .name {
+            padding-left: 60px;
+            h1 {
+              @include styleText($color-black-0, $fs-1, $fw-bold);
+              margin-bottom: 5px;
+            }
+            p {
+              color: $color-gray-4;
+            }
+          }
+          .arrow {
+            position: absolute;
+            right: 40px;
+            top: 10px;
+            font-size: $fs-3;
+            color: $color-gray-4;
+          }
+        }
+        .scheduleTime {
+          margin: 10px;
+          border: 1px solid $color-gray-6;
+          background-color: $color-gray-3;
+          border-radius: 5px;
+          width: fit-content;
+          padding: 10px;
+          p {
+            @include styleText($color-green-2, $fs-2, $fw-bold);
+          }
+          span {
+            @include styleText($color-gray-4, $fs-1, $fw-bold)
+          }
+        } 
+      }
+    }
+    .active {
+      opacity: 1 !important;
+    }
+  }
+}
+
+@include responesive("medium") {
+  .cinemaComplex {
+    &__content {
+      &--logo {
+        a {
+          img {
+            width: 40px;
+          }
+        }
+      }
+      &--list {
+        min-height: fit-content;
+      }
+    }
+  }
+}

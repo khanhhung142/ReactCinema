@@ -1,0 +1,59 @@
+.orangButton {
+  margin-top: 25px;
+  background: linear-gradient(to left, #fb4226, #ce3017 100%);
+  padding: 7px 25px;
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  left: 0;
+  bottom: -21%;
+  overflow: hidden;
+  &::after {
+    content: "";
+    width: 120%;
+    height: 110%;
+    display: block;
+    position: absolute;
+    bottom: -4%;
+    left: -10%;
+    background: $color-orange-0;
+    transform: skew(60deg) translateX(-120%);
+    transition: 0.4s;
+  }
+  &:hover::after {
+    transform: translateX(0);
+  }
+  span {
+    @include styleText(#fff, $fs-1, $fw-bold);
+    position: relative;
+    z-index: 1000;
+  }
+}
+
+.greenButton {
+  background: linear-gradient(to left,$color-green-1 ,$color-green-2  100%);
+  border: none;
+  // border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    width: 130%;
+    height: 110%;
+    display: block;
+    position: absolute;
+    bottom: -4%;
+    left: -27%;
+    background: $color-green-0;
+    transform: skew(45deg) translateX(-120%);
+    transition: 0.4s;
+  }
+  &:hover::after {
+    transform: translateX(0);
+  }
+  span {
+    @include styleText(#fff, 1rem, $fw-bold);
+    position: relative;
+    z-index: 1000;
+  }
+}

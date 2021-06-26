@@ -1,0 +1,87 @@
+.banner {
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &__content {
+    padding: 120px 0 80px 0;
+    // position: relative;
+    max-width: 940px;
+    float: none;
+    margin: auto;
+    clear: both;
+    display: block;
+    &--warrper {
+      .left {
+        padding: 60px 0;
+        h1 {
+          @include styleText(#fff, 36px, $fw-bold-1);
+        }
+        p {
+          @include styleText(#fff, $fs-2, $fw-normal);
+          margin: 40px 0;
+        }
+        button {
+          background-color: #fb4226;
+          padding: 10px 20px;
+          color: #fff;
+          font-size: $fs-2;
+          font-weight: 700;
+          border: none;
+          border-radius: 4px;
+        }
+      }
+      .right {
+        position: relative;
+        padding: 0;
+        .phone-img {
+          padding: 0 28%;
+          height: auto;
+          max-width: 100%;
+          display: block;
+        }
+        .phoneCarousel {
+          position: absolute;
+          padding: 1.5% 29.3% 0 29.3%;
+          top: 0;
+          left: 0;
+          width: 100%;
+          .slick-list {
+            border-radius: 20px;
+          }
+          &--item {
+            width: 195px;
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include responesive("extra-large"){
+  .banner {
+    &__content {
+      &--warrper {
+        padding: 0 20px;
+      }
+    }
+  }
+}
+
+@include responesive("large"){
+  .banner {
+    &__content {
+      &--warrper {
+        padding: 0 30px;
+        .left {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

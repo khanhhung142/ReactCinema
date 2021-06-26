@@ -1,0 +1,30 @@
+// Lib
+@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick-theme.css";
+@import 'react-circular-progressbar/dist/styles.css';
+@import 'sweetalert2/src/sweetalert2.scss';
+// Helper
+@import "./helper/variable";
+@import "./helper/mixin";
+
+// Base
+@import "./base/reset";
+@import "./base/normalized";
+// @import "./base/normalized";
+
+// component
+@import "./components/button";
+@import "./components/dropdown";
+@import "./components/scrollBar";
+@import "./components/popupVideo";
+@import "./components//filmCard";
+@import "./components/cinemaComplex";
+
+// Layout 
+@import "./layout/navbar";
+@import "./layout/mainCarousel";
+@import "./layout/filmBlock";
+@import "./layout/banner";
+@import "./layout/filmDetail";
+@import "./layout/checkout";
+@import "./layout/footer";

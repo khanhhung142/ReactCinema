@@ -1,0 +1,204 @@
+.filmDetail {
+  background-color: rgb(10, 32, 41);
+  &__content {
+    
+    &--top {
+      position: relative;
+      .blurBackGround {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        img {
+          filter: blur(15px);
+          margin: -11px 0 -5px -10px;
+          width: calc(100% + 5px);
+        }
+      }
+      .supBackGround {
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+      }
+      .detail {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        max-width: 870px;
+        float: none;
+        margin: auto;
+        clear: both;
+        .imgBanner {
+          border-radius: 4px;
+          padding-top: 147.90697674%;
+          background-position: center, 0 0;
+          background-size: 100% auto;
+          background-repeat: no-repeat, repeat-y;
+          &--trailer {
+            display: none;
+          }
+          &:hover {
+            .imgBanner--trailer {
+              display: block;
+            }
+          }
+        }
+        .mainInfo {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 25%;
+          p {
+            @include styleText($color-gray-5, $fs-0, $fw-normal);
+          }
+          h1 {
+            margin: 10px 0;
+            @include styleText($color-gray-5, $fs-3, $fw-bold-0);
+            span {
+              background-color: #fb4226;
+              color: #fff;
+              font-size: 16px;
+              border-radius: 4px;
+              padding: 2px 6px;
+              display: inline-block;
+              text-align: center;
+              min-width: 33px;
+            }
+          }
+  
+        }
+        .score {
+          text-align: center;
+          padding: 0;
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          .star {
+            margin-top: 20px;
+            i {
+              color: $color-orange-0;
+              font-size: $fs-3;
+            }
+          }
+          .numberCmt {
+            padding-top: 10px;
+            margin: auto;
+            span {
+              @include styleText($color-gray-5, $fs-1, $fw-normal);
+            }
+          }
+        }
+      }
+      .trailerMobile {
+        display: none;
+      }
+    }
+    &--bottom {
+      max-width: 870px;
+      margin: auto;
+      position: relative;
+      z-index: 10;
+      transform: translate(0, -70px);
+      .nav {
+        display: flex;
+        justify-content: center;
+        h1 {
+          cursor: pointer;
+          margin: 0 20px;
+          transition: 0.2s;
+          @include styleText(#fff, 20px, $fw-bold);
+          &:hover {
+            font-size: 24px;
+          }
+        }
+        .active {
+          color: $color-orange-0;
+        }
+      }
+      .bottomContent {
+        margin-top: 40px;
+        min-height: 300px;
+        .schedule {
+          .cinemaComplex {
+            background-color: #fff;
+          }
+        }
+        .infoDetail {
+          color: #fff;
+          .row {
+            margin-bottom: 10px;
+            h1 {
+              @include styleText(#fff, $fs-1, $fw-bold-0);
+            }
+            p {
+              @include styleText($color-gray-5, $fs-1, $fw-normal);
+            }
+            .infoHeader {
+              margin-bottom: 10px;
+            }
+          }
+        }
+        .commentDetail {
+          h1 {
+            color: #fff;
+            text-align: center;
+            font-size: 24px;
+          }
+        }
+        .showContent {
+          display: block;
+        }
+        .hideContent {
+          display: none;
+        }
+      }
+      .infoShowMoblie {
+        display: none;
+        margin: 1rem 0 2rem 1rem;
+        p {
+          @include styleText($color-gray-2, $fs-0, $fw-normal);
+        }
+        h1 {
+          margin: 10px 0;
+          @include styleText($color-gray-5, $fs-3, $fw-bold-0);
+        }
+      }
+    }
+  }
+}
+
+@include responesive("medium") {
+  .filmDetail {
+    &__content {
+      &--top {
+        .blurBackGround {
+          img {
+            filter: none;
+          }
+        }
+        .detail {
+          display: none;
+        }
+        .trailerMobile {
+          display: block;
+        }
+      }
+      &--bottom {
+        padding-bottom: 1rem;
+        transform: translate(0, 0);
+        .infoShowMoblie {
+          display: block;
+        }
+        .infoDetail {
+          padding: 1rem;
+        }
+      }
+    }
+  }
+}

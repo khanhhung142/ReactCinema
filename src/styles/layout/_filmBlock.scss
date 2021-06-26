@@ -1,0 +1,42 @@
+.filmBlock {
+  margin-top: 5rem;
+  &__toggle {
+    display: flex;
+    justify-content: center;
+    h1 {
+      cursor: pointer;
+      margin: 0 10px;
+      transition: 0.2s;
+      @include styleText($color-black-0, 20px, $fw-bold);
+      &:hover {
+        font-size: $fs-3;
+      }
+    }
+    .active {
+      color: $color-orange-0;
+    }
+  }
+  &__content {
+    .slick-next {
+      position: absolute;
+      right: -5%;
+      top: 50%;
+      transform: translateY(-50%);
+      &::before {
+        display: none;
+      }
+    }
+    .slick-prev {
+      position: absolute;
+      left: -5%;
+      top: 50%;
+      transform: translateY(-50%);
+      &::before {
+        display: none;
+      }
+    }
+    &--item {
+      width: 100%;
+    }
+  }
+}

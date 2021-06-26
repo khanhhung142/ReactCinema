@@ -1,0 +1,71 @@
+.mainCarousel {
+  position: relative;
+  &__content {
+    &--item {
+      transition: .4s;
+      .play-button {
+        background-color: rgba(133, 133, 133, 0.6);
+        display: none;
+      }
+      .img-warrper-16by9 {
+        display: block;
+        padding-bottom: 56.25%;
+        overflow: hidden;
+        position: relative;
+      }
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        // object-fit: cover;
+      }
+      &:hover {
+        .play-button {
+          display: flex;
+        }
+      }
+    }
+
+  }
+  .fastBooking {
+    display: block;
+    max-width: 940px;
+    margin: auto;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%,50%);
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    z-index: 2;
+    &__content {
+      padding: 15px 0;
+      &--item {
+        padding: 15px 20px;
+        border-right: 1px solid #f0f0f0;
+        cursor: pointer;
+      }
+      &--dropdown {
+        display: flex;
+        justify-content: space-between;
+      }
+      &--button {
+        button {
+          padding: 10px 15px;
+          font-size: $fs-1;
+        }
+      }
+    }
+  }
+}
+
+@include responesive("large") {
+  .mainCarousel {
+    .fastBooking {
+      display: none;
+    }
+  }
+}

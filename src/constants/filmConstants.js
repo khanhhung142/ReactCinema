@@ -1,0 +1,12 @@
+// Flim list: Danh sách tất cả film của web
+export const GET_FILMLIST_REQUEST = "GET_FILMLIST_REQUEST"
+export const GET_FILMLIST_SUCCESS = "GET_FILMLIST_SUCCESS"
+export const GET_FILMLIST_FAILTURE = "GET_FILMLIST_FAILTURE"
+// Film page: Danh sách film (Lấy 1 phần film từ film list)
+export const GET_FILMPAGE_REQUEST = "GET_FILMPAGE_REQUEST"
+export const GET_FILMPAGE_SUCCESS = "GET_FILMPAGE_SUCCESS"
+export const GET_FILMPAGE_FAILTURE = "GET_FILMPAGE_FAILTURE"
+// Flim by day: Danh sách film theo ngày
+export const GET_FILMBYDAY_REQUEST = "GET_FILMBYDAY_REQUEST"
+export const GET_FILMBYDAY_SUCCESS = "GET_FILMBYDAY_SUCCESS"
+export const GET_FILMBYDAY_FAILTURE = "GET_FILMBYDAY_FAILTURE"

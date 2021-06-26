@@ -1,0 +1,579 @@
+.checkout {
+  width: 100%;
+  position: relative;
+  .showMobile {
+    display: none;
+  }
+  &__nav {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    height: 80px;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    h1 {
+      margin: 2rem;
+      font-size: $fs-1;
+      font-weight: $fw-bold;
+    }
+    .backBtn {
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: $color-gray-0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 5%;
+      background-color: transparent;
+      border-right: 3px solid $color-gray-0;
+      padding: 5px 20px;
+    }
+    .hide {
+      display: none;
+    }
+    .show {
+      display: block;
+      text-align: center;
+    }
+    .active {
+      position: relative;
+      color: $color-orange-0;
+      &::before {
+        content: "";
+        height: 2px;
+        width: 100%;
+        position: absolute;
+        top: -100%;
+        right: 0;
+        background-color: $color-orange-0;
+      }
+    }
+  }
+  &__content {
+    margin-top: 80px;
+  }
+  &__step01 {
+    margin: 0;
+    &--left {
+      padding: 0;
+      position: relative;
+      .left--background {
+        width: 100%;
+        height: 100%;
+        .img {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          img {
+            height: 100%;
+          }
+        }
+        .blackBackground {
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+        }
+      }
+      .left--backBtn {
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: $color-gray-6;
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        background-color: transparent;
+        border-right: 3px solid $color-gray-6;
+        padding: 5px 20px;
+      }
+      .left--info {
+        position: absolute;
+        top: 50%;
+        left: 15%;
+        transform: translateY(-50%);
+        color: $color-gray-5;
+        width: 70%;
+        p {
+          @include styleText($color-gray-5, $fs-0, $fw-normal);
+        }
+        h1 {
+          margin: 20px 0;
+          @include styleText($color-gray-5, $fs-2, $fw-bold-0);
+          span {
+            background-color: $color-green-0;
+            color: #fff;
+            border-radius: 4px;
+            padding: 2px 6px;
+            display: inline-block;
+            text-align: center;
+            min-width: 33px;
+          }
+        }
+      }
+    }
+    &--right {
+      padding: 20px 70px;
+      .right--info {
+        margin-bottom: 4rem;
+        h1 {
+          @include styleText($color-green-0, $fs-2, $fw-bold);
+          margin-bottom: 5px;
+        }
+        p {
+          color: $color-gray-4;
+          font-size: $fs-1;
+        }
+      }
+      .right--buyInfo {
+        .item:first-child {
+          border-top: 1px solid $color-gray-5;
+        }
+        .item {
+          border-bottom: 1px solid $color-gray-5;
+          align-items: center;
+          padding: 2rem 0;
+          &--ticketType {
+            @include styleText($color-gray-7, $fs-2, $fw-bold-1);
+          }
+          &--cost {
+            text-align: center;
+            @include styleText($color-green-0, $fs-2, $fw-bold-1);
+          }
+          &--amount {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            button {
+              border: none;
+              background-color: transparent;
+              color: $color-orange-0;
+              font-size: $fs-4;
+            }
+            span {
+              border: 1px solid $color-gray-5;
+              font-size: $fs-3;
+              padding: 5px 10px;
+            }
+          }
+        }
+      }
+      .right--cost {
+        position: relative;
+        padding: 2rem 0;
+        margin-top: 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid $color-gray-5;
+        .totalCost {
+          padding-left: 2rem;
+          h1 {
+            @include styleText($color-gray-0, $fs-1, $fw-bold-1);
+          }
+          p {
+            @include styleText($color-green-0, $fs-3, $fw-bold-1);
+          }
+        }
+        .select {
+          position: absolute;
+          width: 20%;
+          height: 100%;
+          right: 0;
+          button {
+            width: 100%;
+            height: 100%;
+            span {
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+      .right--footer {
+        text-align: center;
+        color: $color-gray-4;
+        h1 {
+          margin-top: 1rem;
+          span {
+            color: $color-black-1;
+            font-weight: bold;
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+    &--mobile {
+      padding: 0;
+      .banner {
+        img {
+          width: 100%;
+          height: 150px;
+          object-fit: cover;
+        }
+      }
+      .blurBackground {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 150px;
+      }
+      .filmInfo {
+        transform: translateY(-60%);
+        color: $color-gray-5;
+        width: 70%;
+        p {
+          @include styleText($color-black-0, $fs-80, $fw-normal);
+        }
+        h1 {
+          margin: 10px 0;
+          @include styleText($color-black-2, $fs-1, $fw-bold-0);
+          span {
+            background-color: $color-green-0;
+            color: #fff;
+            border-radius: 2px;
+            padding: 1px 3px;
+            display: inline-block;
+            text-align: center;
+            min-width: 33px;
+          }
+        }
+      }
+      .cinemaInfo {
+        transform: translateY(-30%);
+        h1 {
+          @include styleText($color-green-0, $fs-1, $fw-bold);
+          margin-bottom: 5px;
+        }
+        p {
+          color: $color-black-0;
+          font-size: $fs-80;
+        }
+      }
+      .item:first-child {
+        border-top: 1px solid $color-gray-5;
+      }
+      .item {
+        border-bottom: 1px solid $color-gray-5;
+        // display: flex;
+        align-items: center;
+        // justify-content: space-between;
+        // padding: 1rem;
+        &--ticketType {
+          h1 {
+            font-size: $fs-1;
+            font-weight: bold;
+            text-align: center;
+          }
+          p {
+            text-align: center;
+            font-size: $fs-0;
+            color: $color-green-0;
+            font-weight: bold;
+          }
+        }
+        &--cost {
+          text-align: center;
+          @include styleText($color-green-0, $fs-2, $fw-bold-1);
+        }
+        &--amount {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          button {
+            border: none;
+            background-color: transparent;
+            color: $color-orange-0;
+            font-size: $fs-4;
+          }
+          span {
+            border: 1px solid $color-gray-5;
+            font-size: $fs-2;
+            padding: 3px 6px;
+          }
+        }
+      }
+      .cost {
+        margin: 0;
+        .totalCost {
+          border-top: 1px solid $color-gray-5;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          h1 {
+            text-align: center;
+            color: $color-black-0;
+            font-size: $fs-80;
+          }
+          p {
+            text-align: center;
+            font-size: $fs-0;
+            color: $color-green-0;
+            font-weight: bold;
+          }
+        }
+        .select {
+          width: 100%;
+          // height: 100%;
+          button {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+  &__step02 {
+    &--sideBar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 30%;
+      height: 100%;
+      z-index: 100;
+      background-color: rgba(255, 255, 255, 1);
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      .content {
+        position: relative;
+      }
+      .header {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        h1 {
+          @include styleText($color-green-0, $fs-4, $fw-bold-1);
+        }
+      }
+      .item {
+        padding: 1.2rem;
+        border-top: 1px solid $color-gray-5;
+        p {
+          padding-right: 1rem;
+        }
+      }
+      .info {
+        p {
+          @include styleText($color-gray-7, $fs-0, $fw-normal);
+          line-height: 1.5rem;
+        }
+        h1 {
+          @include styleText($color-gray-7, $fs-2, $fw-bold-0);
+          margin-bottom: 0.5rem;
+          span {
+            background-color: $color-orange-0;
+            color: #fff;
+            border-radius: 4px;
+            padding: 2px 6px;
+            display: inline-block;
+            text-align: center;
+            min-width: 33px;
+            margin-right: 0.5rem;
+          }
+        }
+      }
+      .userInfo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .ticket {
+        p {
+          @include styleText($color-orange-0, $fs-2, $fw-bold-1);
+        }
+        h1 {
+          @include styleText($color-green-0, $fs-2, $fw-bold-1);
+        }
+      }
+      .text {
+        p,
+        h1 {
+          @include styleText($color-gray-7, $fs-2, $fw-bold-1);
+        }
+      }
+      .blankDiv {
+        border-top: 1px solid $color-gray-5;
+      }
+      .warning {
+        position: absolute;
+        right: 0;
+        width: 100%;
+        padding: 1rem;
+        bottom: 10%;
+        p {
+          @include styleText($color-gray-7, $fs-1, $fw-bold-1);
+          text-align: center;
+        }
+        i {
+          color: $color-orange-0;
+        }
+        span {
+          color: $color-yellow-0;
+        }
+      }
+      .buyBtn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 101;
+        height: 10%;
+        width: 100%;
+        button {
+          width: 100%;
+          height: 100%;
+          span {
+            font-size: 2rem;
+          }
+        }
+      }
+      .nonActive {
+        background-color: #8d8c8a;
+        border: none;
+        color: #fff;
+      }
+    }
+    &--content {
+      width: 70%;
+      .info {
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        p {
+          color: $color-gray-4;
+          font-size: $fs-1;
+        }
+        .cinemaInfo {
+          h1 {
+            @include styleText($color-green-0, $fs-2, $fw-bold);
+            margin-bottom: 5px;
+          }
+        }
+        .countdown {
+          h1 {
+            @include styleText($color-orange-0, $fs-4, $fw-bold);
+            text-align: center;
+          }
+        }
+      }
+      .screen {
+        padding-left: 4rem;
+        padding-right: 1rem;
+        .blackDiv {
+          height: 12px;
+          width: 100%;
+          border-radius: 3px;
+          background-color: #000;
+        }
+        h1 {
+          text-align: center;
+          margin-top: 1rem;
+          font-size: $fs-3;
+          font-weight: bold;
+        }
+        .slotRow {
+          align-items: center;
+          margin-top: 1rem;
+          .text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 100%;
+            h1 {
+              margin-top: 0;
+              color: $color-gray-7;
+              font-size: 1.5rem;
+              font-weight: bold;
+            }
+          }
+        }
+        .slot {
+          cursor: pointer;
+          margin-left: 0.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
+          border-radius: 20%;
+          background-color: #2e4048;
+        }
+        .vip {
+          background-color: $color-yellow-0;
+        }
+        .active {
+          background-color: $color-green-0 !important;
+        }
+        .disable {
+          background-color: $color-gray-2 !important;
+        }
+        .help {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          .slot {
+            cursor: default;
+            margin-right: 1rem;
+          }
+          .item {
+            display: flex;
+            align-items: center;
+            font-size: $fs-0;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include responesive("medium") {
+  .checkout {
+    .hideMobile {
+      display: none !important;
+    }
+    .showMobile {
+      display: block !important;
+    }
+    &__content {
+      margin-top: 50px;
+    }
+    &__nav {
+      height: 50px;
+      h1 {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    &__step02 {
+      &--content {
+        width: 100%;
+        .screen {
+          width: 120%;
+          overflow-x: auto;
+          overflow-y: hidden;
+          // white-space: nowrap;
+          padding: 0 1rem;
+          .slotRow {
+            margin-top: 0.5rem;
+            .text {
+              h1 {
+                font-size: 1rem;
+              }
+            }
+            .slot {
+              margin-left: 0.4rem;
+              width: 1.2rem;
+              height: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

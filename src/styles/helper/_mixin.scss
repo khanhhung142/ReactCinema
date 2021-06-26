@@ -1,0 +1,41 @@
+// thêm style các loại chữ 
+@mixin styleText($color, $fs, $fw) {
+    color: $color;
+    font-size: $fs;
+    font-weight: $fw;
+}
+// button 
+@mixin styleButton($bg-color, $border-color, $pd-y, $pd-x, $radius) {
+    background-color: $bg-color;
+    border: 1px solid $border-color;
+    padding: $pd-y $pd-x;
+    border-radius: $radius;
+    &:focus {
+        outline: 1px solid #0276b3 !important;
+        outline-offset: 5px;
+    }
+    &:active {
+        border-color: $color-black-1;
+        box-shadow: 0 0 1px 1px rgba(20, 23, 28, 0.1), 0 3px 1px 0 rgba(20, 23, 28, 0.1);
+    }
+}
+
+@mixin styleButtonHover($bg-color, $color, $border-color) {
+    background-color: $bg-color;
+    color: $color;
+    border-color: $border-color;
+}
+
+
+@mixin responesive($screen) {
+    
+    @if(map-has-key($map:$breakpoints, $key:$screen))
+    {
+        $value:map-get($map:$breakpoints , $key:$screen);
+        @media screen and (max-width:$value) {
+            @content;
+        }
+    }@else{
+        @warn "man hinh ko ton tai";
+    }
+}

@@ -1,0 +1,80 @@
+.slick-arrow {
+	z-index: 5;
+	width: auto;
+	height: auto;
+	i {
+		font-size: 2.5rem;
+		background-color: rgba(255, 255, 255, 0.5);
+		color: $color-black-0;
+		width: 55px;
+		height: 62px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+.slick-next {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+
+	&::before {
+		display: none;
+	}
+}
+.slick-prev {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+
+	&::before {
+		display: none;
+	}
+}
+.slick-dots {
+	position: absolute;
+	// left: 50%;
+	// transform: translateX(-50%);
+	bottom: 20%;
+	z-index: 999;
+	li {
+		button {
+			&::before {
+				content: "";
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				background-color: $color-gray-6;
+				opacity: 1;
+				transition: 0.2s;
+			}
+		}
+	}
+	.slick-active {
+		button {
+			&::before {
+				background-color: $color-orange-0;
+			}
+		}
+	}
+}
+
+// Circular Progressbar
+.CircularProgressbar {
+  // font-size: 126px;
+	.CircularProgressbar-trail {
+		stroke: $color-gray-7;
+	}
+  .CircularProgressbar-path {
+    stroke: #7ed321;
+  }
+  .CircularProgressbar-background {
+    background-color: rgba(0,0,0,.4);
+  }
+  .CircularProgressbar-text {
+    fill: #fff;
+    font-size: 2.5rem;
+  }
+}

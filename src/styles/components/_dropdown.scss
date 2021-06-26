@@ -1,0 +1,26 @@
+.dropdown__content {
+  background-color: #fff;
+  padding: $pd-0 0;
+  // position: absolute;
+  // left: 0;
+  // top: 100%;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  max-height: 260px;
+  font-size: $fs-0;
+  .dropdown__item {
+    transition: .2s;
+    &:hover {
+      background-color: $color-blue-0;
+    }
+  }
+}
+.dropdown__toggle {
+  background-color: transparent;
+  border: none;
+  &:hover, &:active, &:focus{
+    background-color: transparent;
+    border: none;
+  }
+}
