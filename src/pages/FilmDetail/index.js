@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import PopupVideo from "../../components/PopupVideo";
 import { CircularProgressbar } from "react-circular-progressbar";
 import CinemaComplex from "../../components/CinemaComplex";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 // import CinemaComplexDetail from "../../components/CinemaComplexDetail";
 export default function FilmDetail() {
+  const {filmID} = useParams()
   const [activeID, setactiveID] = useState("scheduleID");
   const danhGia = 8.5;
-  const filmID = 12;
   const star = [];
   // Hàm render số sao đánh giá
   const renderStar = (rate) => {
@@ -20,7 +20,6 @@ export default function FilmDetail() {
       star.push(<i class="fa fa-star-half"></i>);
     }
   };
-  console.log(activeID);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

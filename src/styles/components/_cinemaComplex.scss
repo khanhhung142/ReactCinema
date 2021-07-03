@@ -1,5 +1,16 @@
 .cinemaComplex {
   &__content {
+    &--inform {
+      text-align: center;
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+      width: 110%;
+      display: block;
+      margin-left: -20px;
+      margin-top: -20px;
+      line-height: 2.5rem;
+    }
     &--logo {
       display: flex;
       justify-content: center;
@@ -23,10 +34,12 @@
     }
     &--list {
       border: 1px solid #ebebec;
-      min-height: 705px;
-      overflow-y: hidden;
+      //overflow-y: hidden;
     }
     &--listCinema {
+      min-height: 705px;
+      max-height: 705px;
+      overflow-y: scroll;
       border-right: 1px solid #ebebec;
       .cinema {
         display: block;
@@ -72,10 +85,13 @@
       }
     }
     &--listSchedule {
+      min-height: 705px;
+      max-height: 705px;
+      overflow-y: scroll;
       padding: 20px;
       .filmSchedule {
         position: relative;
-        width: 100%;   
+        width: 100%;
         a {
           text-decoration: none;
         }
@@ -125,9 +141,9 @@
             @include styleText($color-green-2, $fs-2, $fw-bold);
           }
           span {
-            @include styleText($color-gray-4, $fs-1, $fw-bold)
+            @include styleText($color-gray-4, $fs-1, $fw-bold);
           }
-        } 
+        }
       }
     }
     .active {

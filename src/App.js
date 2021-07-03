@@ -7,6 +7,7 @@ import Admin from "./pages/Admin/admin";
 // import Login from './pages/Auth/login';
 // import Register from "./pages/Auth/register";
 import LoginAsAdmin from "./pages/Admin/loginAsAdmin";
+import LoadingPage from "./pages/LoadingPage";
 
 const Home = lazy(() => import("./pages/Home/index"));
 const FilmDetail = lazy(() => import("./pages/FilmDetail"));
@@ -16,7 +17,7 @@ const Checkout = lazy(() => import("./pages/Checkout"));
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<LoadingPage/>}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/login">

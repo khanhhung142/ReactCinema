@@ -1,16 +1,19 @@
-import React, { useState } from "react";
-import { listLogoCinema } from "../../data/data";
+import React, { useEffect, useState } from "react";
+import { getCinemaBrands } from "../../actions/cinemaAction";
 import ListCinema from "./ListCinema";
+import { useSelector, useDispatch } from "react-redux";
 export default function CinemaComplex() {
-  const [activeID, setactiveID] = useState(listLogoCinema[0].maHeThongRap);
-  // const addActive = (e) => {
-  //   setactiveID(e.target.id);
-  // }
+  const { data } = useSelector((state) => state.cinemaBrand);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCinemaBrands());
+  }, []);
+  const [activeID, setactiveID] = useState("BHDStar");
   return (
     <div className="cinemaComplex container" id="cinema">
       <div className="cinemaComplex__content">
         <div className="cinemaComplex__content--logo mb-2">
-          {listLogoCinema.map((item) => {
+          {data.map((item) => {
             return (
               <a
                 key={item.maHeThongRap}
@@ -18,15 +21,12 @@ export default function CinemaComplex() {
                 id={item.maHeThongRap}
                 onClick={(e) => setactiveID(e.target.id)}
               >
-                <img
-                  src={item.logo}
-                  alt={item.maHeThongRap}
-                />
+                <img src={item.logo} alt={item.maHeThongRap} />
               </a>
             );
           })}
         </div>
-          <ListCinema cinema={activeID} />
+        <ListCinema cinema={activeID} />
       </div>
     </div>
   );

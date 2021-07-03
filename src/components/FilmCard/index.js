@@ -6,16 +6,16 @@ export default function FilmCard({ film }) {
   const { maPhim, tenPhim, biDanh, trailer, hinhAnh, ngayKhoiChieu, danhGia } =
     film;
   // Biến link film xác định url film-detail
-  const linkFilm = `/films/${maPhim}-${biDanh}`;
+  const linkFilm = `/films/${maPhim}`;
   const star = [];
   // Hàm render số sao đánh giá
-  const renderStar = (rate) => {
+  const renderStar = (danhGia) => {
     const fullStar = Math.floor(danhGia / 2);
     const halfStar = danhGia % 2;
     for (let i = 0; i < fullStar; i++) {
       star.push(<i class="fa fa-star"></i>);
     }
-    if (halfStar != 0) {
+    if (halfStar !== 0) {
       star.push(<i class="fa fa-star-half"></i>);
     }
   };
@@ -25,11 +25,11 @@ export default function FilmCard({ film }) {
         <Link to={linkFilm}>
           <div
             className="film__card__banner"
-            style={{ backgroundImage: `url(${process.env.PUBLIC_URL + hinhAnh})` }}
+            style={{ backgroundImage: `url(${hinhAnh})` }}
           >
             <div className="film__card__banner--rate">
               <p>{danhGia}</p>
-              {renderStar()}
+              {renderStar(danhGia)}
               <div className="film__card__banner--star">
                 {star.map((item) => item)}
               </div>
