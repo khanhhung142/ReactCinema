@@ -71,10 +71,10 @@ export default function Step02({ ...props }) {
           </div>
           <div className="info item">
             <h1>
-              <span>C16</span>John Wick: Chapter 4
+              <span>C16</span>{props.thongTinPhim.tenPhim}
             </h1>
-            <p>BHD Star Cineplex - 3/2</p>
-            <p>16.05.2021 - 10:01 - Rạp 6</p>
+            <p>{props.thongTinPhim.tenCumRap}</p>
+            <p>{props.thongTinPhim.ngayChieu} - {props.thongTinPhim.gioChieu} - {props.thongTinPhim.tenRap}</p>
           </div>
           <div className="ticket item userInfo">
             <p>Ghế {slot}</p>
@@ -116,13 +116,13 @@ export default function Step02({ ...props }) {
       <div className="checkout__step02--content">
         <div className="info">
           <div className="cinemaInfo">
-            <h1>BHD Star Cineplex - 3/2</h1>
-            <p>16.05.2021 - 10:01 - Rạp 6</p>
+            <h1>{props.thongTinPhim.tenCumRap}</h1>
+            <p>{props.thongTinPhim.ngayChieu} - {props.thongTinPhim.gioChieu} - {props.thongTinPhim.tenRap}</p>
           </div>
           <div className="countdown">
             <p>Thời gian giữ ghế</p>
             <Countdown
-              initialMinute={10}
+              initialMinute={0}
               initialSeconds={30}
               handleCountdown={handleCountdown}
             />
@@ -131,14 +131,14 @@ export default function Step02({ ...props }) {
         <div className="screen scrollBar">
           <div className="blackDiv"></div>
           <h1>Màn hình</h1>
-          {listSlot.map((item, index) => {
+          {props.danhSachGhe.map((item, index) => {
             if (index % 16 === 0) {
               // console.log(String.fromCharCode(65 + index / 16));
               return (
                 <SlotRow
                   key={index}
                   character={String.fromCharCode(65 + index / 16)}
-                  slots={listSlot.slice(index, index + 16)} standardSlot={standardSlot} vipSlot={vipSlot} bookingActive={bookingActive} handleActive={handleActive}
+                  slots={props.danhSachGhe.slice(index, index + 16)} standardSlot={standardSlot} vipSlot={vipSlot} bookingActive={bookingActive} handleActive={handleActive}
                 />
               );
             }

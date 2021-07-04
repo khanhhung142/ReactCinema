@@ -32,7 +32,7 @@ function App() {
           <Route path="/login-as-admin">
             <LoginAsAdmin />
           </Route>
-          <Route path="/checkout/:filmID" exact>
+          <Route path="/checkout/:scheduleID" exact>
             <Checkout />
           </Route>
           {/* Route main */}

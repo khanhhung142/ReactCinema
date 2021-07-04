@@ -11,9 +11,15 @@
         width: 100%;
         overflow: hidden;
         img {
-          filter: blur(15px);
-          margin: -11px 0 -5px -10px;
-          width: calc(100% + 5px);
+          height: 80vh;
+          -webkit-filter: blur(8px);
+          filter: blur(8px);
+          transform: scaleY(.91);
+          width: 100%;
+        }
+        .img_bg {
+          object-fit: cover;
+          object-position: center center;
         }
       }
       .supBackGround {
@@ -180,6 +186,7 @@
         .blurBackGround {
           img {
             filter: none;
+            height: 40vh;
           }
         }
         .detail {

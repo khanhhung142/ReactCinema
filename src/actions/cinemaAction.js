@@ -8,6 +8,9 @@ import {
   GET_SCHEDULE_FAILTURE,
   GET_SCHEDULE_REQUEST,
   GET_SCHEDULE_SUCCESS,
+  GET_SLOTS_FAILTURE,
+  GET_SLOTS_REQUEST,
+  GET_SLOTS_SUCCESS,
 } from "../constants/cinemaConstants";
 import cinemaAPI from "../services/cinemaAPI";
 
@@ -57,6 +60,24 @@ export const getScheduleOnTheater = (cinema) => {
     } catch (error) {
       dispatch({
         type: GET_SCHEDULE_FAILTURE,
+        payload: error,
+      });
+    }
+  };
+};
+
+export const getSlots = (cinema) => {
+  return async (dispatch) => {
+    dispatch({ type: GET_SLOTS_REQUEST });
+    try {
+      const { data } = await cinemaAPI.getSlots(cinema);
+      dispatch({
+        type: GET_SLOTS_SUCCESS,
+        payload: {thongTinPhim: data.thongTinPhim, danhSachGhe: data.danhSachGhe},
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_SLOTS_FAILTURE,
         payload: error,
       });
     }

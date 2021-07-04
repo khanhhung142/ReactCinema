@@ -5,9 +5,12 @@ import {
   GET_FILMPAGE_REQUEST,
   GET_FILMPAGE_SUCCESS,
   GET_FILMPAGE_FAILTURE,
-  GET_FILMBYDAY_REQUEST,
-  GET_FILMBYDAY_SUCCESS,
-  GET_FILMBYDAY_FAILTURE,
+  GET_FILMINFO_FAILTURE,
+  GET_FILMINFO_REQUEST,
+  GET_FILMINFO_SUCCESS,
+  GET_FILMSCHEDULE_FAILTURE,
+  GET_FILMSCHEDULE_REQUEST,
+  GET_FILMSCHEDULE_SUCCESS,
 } from "../constants/filmConstants";
 // import axios from "axios";
 import filmAPI from "../services/filmsAPI";
@@ -53,6 +56,44 @@ export const getFilmPage = (currentPageIn, countIn) => {
   }
 }
 
+export const getFilmInfo = (filmId) => {
+  return async (dispatch) => {
+    dispatch({type: GET_FILMINFO_REQUEST});
+    try {
+      const {data} = await filmAPI.getFilmInfo(filmId);
+      // const {currentPage, count, ...dataFilted} = data;
+      // console.log(dataFilted)
+      dispatch({
+        type: GET_FILMINFO_SUCCESS,
+        payload: {data},
+      });
+    }catch (error) {
+      dispatch({
+        type: GET_FILMINFO_FAILTURE,
+        payload: error.response
+      })
+    }
+  }
+}
+export const getFilmSchedule = (filmId) => {
+  return async (dispatch) => {
+    dispatch({type: GET_FILMSCHEDULE_REQUEST});
+    try {
+      const {data} = await filmAPI.getFilmSchedule(filmId);
+      // const {currentPage, count, ...dataFilted} = data;
+      // console.log(dataFilted)
+      dispatch({
+        type: GET_FILMSCHEDULE_SUCCESS,
+        payload: {data},
+      });
+    }catch (error) {
+      dispatch({
+        type: GET_FILMSCHEDULE_FAILTURE,
+        payload: error.response
+      })
+    }
+  }
+}
 // export const getFilmByDays = (from, to) => {
 //   return async (dispatch) => {
 //     dispatch({type: GET_FILMBYDAY_REQUEST});

@@ -3,25 +3,29 @@ import PopupVideo from "../../components/PopupVideo";
 import { CircularProgressbar } from "react-circular-progressbar";
 import CinemaComplex from "../../components/CinemaComplex";
 import { Link, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {getFilmInfo} from '../../actions/filmActions'
 // import CinemaComplexDetail from "../../components/CinemaComplexDetail";
 export default function FilmDetail() {
   const {filmID} = useParams()
   const [activeID, setactiveID] = useState("scheduleID");
-  const danhGia = 8.5;
   const star = [];
+  const dispatch = useDispatch();
+  const {data} = useSelector(state => state.filmInfo)
   // Hàm render số sao đánh giá
-  const renderStar = (rate) => {
+  const renderStar = (danhGia) => {
     const fullStar = Math.floor(danhGia / 2);
     const halfStar = danhGia % 2;
     for (let i = 0; i < fullStar; i++) {
       star.push(<i class="fa fa-star"></i>);
     }
-    if (halfStar != 0) {
+    if (halfStar !== 0) {
       star.push(<i class="fa fa-star-half"></i>);
     }
   };
   useEffect(() => {
     window.scrollTo(0, 0);
+    dispatch(getFilmInfo(filmID))
   }, []);
   return (
     <div className="filmDetail warrper">
@@ -29,8 +33,9 @@ export default function FilmDetail() {
         <div className="filmDetail__content--top">
           <div className="blurBackGround">
             <img
-              src={process.env.PUBLIC_URL + "/images/default-trailer.webp"}
+              src={data.hinhAnh}
               alt=""
+              className="img_bg"
             />
           </div>
           <div
@@ -44,10 +49,7 @@ export default function FilmDetail() {
             <div
               className="col-3 imgBanner"
               style={{
-                backgroundImage: `url(${
-                  process.env.PUBLIC_URL +
-                  "/images/films-poster/coomingSoon/john-wick-chapter-4-15827770304921_215x318.jpg"
-                })`,
+                backgroundImage: `url(${data.hinhAnh})`,
               }}
             >
               <div className="imgBanner--trailer">
@@ -57,9 +59,9 @@ export default function FilmDetail() {
             <div className="col-5 mainInfo">
               <p className="date">16.05.2021</p>
               <h1 className="name">
-                <span>C16</span> John Wick: Chapter 4
+                <span>C16</span> {data.tenPhim}
               </h1>
-              <p>110 phút - 6.5 IMDb - 2D/Digitals</p>
+              <p>120 phút - 6.5 IMDb - 2D/Digitals</p>
               <Link to={`/checkout/${filmID}`}>
                 <button className="orangButton">
                   <span>Mua vé</span>
@@ -69,13 +71,13 @@ export default function FilmDetail() {
             <div className="col-2 score">
               <div className="cycle">
                 <CircularProgressbar
-                  value={danhGia}
+                  value={data.danhGia}
                   maxValue={10}
-                  text={danhGia}
+                  text={data.danhGia}
                 />
               </div>
               <div className="star">
-                {renderStar()}
+                {renderStar(data.danhGia)}
                 {star.map((item) => item)}
               </div>
               <div className="numberCmt">
@@ -84,7 +86,7 @@ export default function FilmDetail() {
             </div>
           </div>
           <div className="trailerMobile">
-            <PopupVideo trailer="https://www.youtube.com/embed/VagES3pxttQ" />
+            <PopupVideo trailer={data.trailer} />
           </div>
         </div>
         <div className="filmDetail__content--bottom">
@@ -93,9 +95,9 @@ export default function FilmDetail() {
               <div className="col-12">
                 <p>16.05.2021</p>
                 <h1>
-                  John Wick: Chapter 4
+                {data.tenPhim}
                 </h1>
-                <p>110 phút - 6.5 IMDb - 2D/Digitals</p>
+                <p>120 phút - 6.5 IMDb - 2D/Digitals</p>
               </div>
             </div>
           </div>
@@ -130,7 +132,7 @@ export default function FilmDetail() {
                   : "schedule hideContent"
               }
             >
-              <CinemaComplex />
+              <CinemaComplex isHome={false} filmID={filmID}/>
             </div>
             <div
               className={
@@ -147,15 +149,15 @@ export default function FilmDetail() {
                   </div>
                   <div className="row">
                     <h1 className="col-5">Đạo diễn</h1>
-                    <p className="col-5"></p>
+                    <p className="col-5">Lorem, ipsum dolor.</p>
                   </div>
                   <div className="row">
                     <h1 className="col-5">Diễn viên</h1>
-                    <p className="col-5">Keanu Reeves</p>
+                    <p className="col-5">Lorem, ipsum.</p>
                   </div>
                   <div className="row">
                     <h1 className="col-5">Thể loại</h1>
-                    <p className="col-5">Hành động, tội phạm</p>
+                    <p className="col-5">Lorem, dolor</p>
                   </div>
                   <div className="row">
                     <h1 className="col-5">Định dạnh</h1>
@@ -169,17 +171,7 @@ export default function FilmDetail() {
                 <div className="col-md-6 col-xs-12 right">
                   <h1 className="infoHeader">Nội dung</h1>
                   <p>
-                    Chưa đầy một giờ sau khi kết thúc phần phim trước, cựu sát
-                    thủ John Wick hiện đang bị truy sát và phải chạy trốn ở
-                    Manhattan. Sau vụ giết chết trùm mafia Santino D'Antonio tại
-                    khách sạn Continental New York, John bị tuyên án "Trừ khử"
-                    và bị treo thưởng 14 triệu đôla. Trên đường tẩu thoát khỏi
-                    những kẻ muốn giết mình, John ghé vào Thư viện Công cộng New
-                    York để lấy một sợi dây chuyền hình thánh giá và một huyết
-                    ấn. Anh đã chiến đấu căng thẳng, tiêu diệt nhiều sát thủ
-                    quanh vùng này cho đến khi gặp lại Director, một người đàn
-                    bà anh quen biết trong quá khứ, và bà đang điều hành trường
-                    đào tạo sát thủ dưới vỏ bọc một nhà hát.
+                    {data.moTa}
                   </p>
                 </div>
               </div>

@@ -69,7 +69,7 @@ export default function Home() {
         </div>
       </div>
       <div className="cinemaBlock mb-5">
-        <CinemaComplex />
+        <CinemaComplex isHome={true}/>
       </div>
       <div
         className="banner row"

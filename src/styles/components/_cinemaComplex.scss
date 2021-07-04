@@ -5,7 +5,7 @@
       color: #721c24;
       background-color: #f8d7da;
       border-color: #f5c6cb;
-      width: 110%;
+      width: 105%;
       display: block;
       margin-left: -20px;
       margin-top: -20px;
@@ -37,9 +37,8 @@
       //overflow-y: hidden;
     }
     &--listCinema {
-      min-height: 705px;
-      max-height: 705px;
-      overflow-y: scroll;
+      min-height: 545px;
+      max-height: 545px;
       border-right: 1px solid #ebebec;
       .cinema {
         display: block;
@@ -85,9 +84,9 @@
       }
     }
     &--listSchedule {
-      min-height: 705px;
-      max-height: 705px;
-      overflow-y: scroll;
+      min-height: 545px;
+      max-height: 545px;
+     // max-height: 705px;
       padding: 20px;
       .filmSchedule {
         position: relative;

@@ -15,6 +15,12 @@ const cinemaAPI = {
       maHeThongRap: cinema,
     }
     return axiosClient.get("QuanLyRap/LayThongTinLichChieuHeThongRap", {params});
+  },
+  getSlots: (scheduleID) => {
+    const params = {
+      MaLichChieu:scheduleID,
+    }
+    return axiosClient.get("/QuanLyDatVe/LayDanhSachPhongVe", {params});
   }
 }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getCinemaBrands } from "../../actions/cinemaAction";
 import ListCinema from "./ListCinema";
 import { useSelector, useDispatch } from "react-redux";
-export default function CinemaComplex() {
+export default function CinemaComplex({isHome, filmID}) {
   const { data } = useSelector((state) => state.cinemaBrand);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function CinemaComplex() {
             );
           })}
         </div>
-        <ListCinema cinema={activeID} />
+        <ListCinema cinema={activeID} isHome={isHome} filmID={filmID}/>
       </div>
     </div>
   );

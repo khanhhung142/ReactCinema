@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
-export default function Step01({ triggleStep02 }) {
+export default function Step01({ triggleStep02, thongTinPhim }) {
   const [standard, setStandard] = useState(0);
   const [vip, setVip] = useState(0);
   const [cost, setCost] = useState(0);
@@ -46,10 +46,7 @@ export default function Step01({ triggleStep02 }) {
         <div className="left--background">
           <div className="img">
             <img
-              src={
-                process.env.PUBLIC_URL +
-                "/images/films-poster/coomingSoon/john-wick-chapter-4-15827770304921_215x318.jpg"
-              }
+              src={thongTinPhim.hinhAnh}
               alt=""
             />
           </div>
@@ -64,18 +61,18 @@ export default function Step01({ triggleStep02 }) {
             <i class="fa fa-arrow-left"></i>
           </div>
           <div className="left--info">
-            <p>16.05.2021</p>
+            <p>{thongTinPhim.ngayChieu}</p>
             <h1>
-              <span>C16</span> John Wick: Chapter 4
+              <span>C16</span> {thongTinPhim.tenPhim}
             </h1>
-            <p>110 phút - 6.5 IMDb - 2D/Digitals</p>
+            <p>120 phút - 6.5 IMDb - 2D/Digitals</p>
           </div>
         </div>
       </div>
       <div className="checkout__step01--right col-9 hideMobile">
         <div className="right--info">
-          <h1>BHD Star Cineplex - 3/2</h1>
-          <p>16.05.2021 - 10:01 - Rạp 6</p>
+          <h1>{thongTinPhim.tenCumRap}</h1>
+          <p>{thongTinPhim.ngayChieu} - {thongTinPhim.gioChieu} - {thongTinPhim.tenRap}</p>
         </div>
         <div className="right--buyInfo">
           <div className="item row">
@@ -129,7 +126,7 @@ export default function Step01({ triggleStep02 }) {
         <div className="top" style={{ height: "150px" }}>
           <div className="banner">
             <img
-              src={process.env.PUBLIC_URL + "/images/default-trailer.webp"}
+              src={thongTinPhim.hinhAnh}
               alt=""
             />
           </div>
@@ -143,15 +140,15 @@ export default function Step01({ triggleStep02 }) {
         </div>
         <div className="bottom pl-3">
           <div className="filmInfo">
-            <p>16.05.2021</p>
+            <p>{thongTinPhim.ngayChieu}</p>
             <h1>
-              <span>C16</span> John Wick: Chapter 4
+              <span>C16</span> {thongTinPhim.tenPhim}
             </h1>
-            <p>110 phút - 6.5 IMDb - 2D/Digitals</p>
+            <p>120 phút - 6.5 IMDb - 2D/Digitals</p>
           </div>
           <div className="cinemaInfo">
-            <h1>BHD Star Cineplex - 3/2</h1>
-            <p>16.05.2021 - 10:01 - Rạp 6</p>
+            <h1>{thongTinPhim.tenCumRap}</h1>
+            <p>{thongTinPhim.ngayChieu} - {thongTinPhim.gioChieu} - {thongTinPhim.tenRap}</p>
           </div>
           <div className="buyInfo px-3">
             <div className="item mt-3 p-3 row">

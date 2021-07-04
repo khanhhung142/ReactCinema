@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Step01 from "./Step01";
 import Step02 from "./Step02";
-import { useHistory } from "react-router-dom";
+import { useHistory,useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {getSlots} from '../../actions/cinemaAction'
 export default function Checkout() {
   const history = useHistory();
+  const {scheduleID} = useParams()
+  const dispatch = useDispatch();
+  const {thongTinPhim, danhSachGhe} = useSelector(state => state.slots)
   const [activeID, setactiveID] = useState("step01");
   const [standard, setStandard] = useState(0);
   const [vip, setVip] = useState(0);
@@ -17,6 +22,9 @@ export default function Checkout() {
   const triggleStep01 = () => {
     setactiveID("step01");
   };
+  useEffect(() => {
+    dispatch(getSlots(scheduleID))
+  }, [])
   return (
     <div className="checkout">
       <div className="checkout__nav hideMobile">
@@ -46,7 +54,7 @@ export default function Checkout() {
       </div>
       <div className="checkout__content">
         {activeID === "step01" ? (
-          <Step01 triggleStep02={triggleStep02} />
+          <Step01 triggleStep02={triggleStep02} thongTinPhim={thongTinPhim}/>
         ) : null}
         {activeID === "step02" ? (
           <Step02
@@ -54,6 +62,8 @@ export default function Checkout() {
             vip={vip}
             cost={cost}
             triggleStep01={triggleStep01}
+            thongTinPhim={thongTinPhim}
+            danhSachGhe={danhSachGhe}
           />
         ) : null}
       </div>

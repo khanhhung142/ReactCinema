@@ -14,6 +14,18 @@ const filmAPI = {
     }
     return axiosClient.get("/QuanLyPhim/LayDanhSachPhimPhanTrang", {params})
   },
+  getFilmInfo: (filmId) => {
+    const params = {
+      MaPhim:filmId
+    }
+    return axiosClient.get("/QuanLyPhim/LayThongTinPhim", {params});
+  },
+  getFilmSchedule: (filmId) => {
+    const params = {
+      MaPhim:filmId
+    }
+    return axiosClient.get("/QuanLyRap/LayThongTinLichChieuPhim", {params});
+  }
   // getFilmByDays: (from, to) => {
   //   const params = {
   //     maNhom: "GP01",
