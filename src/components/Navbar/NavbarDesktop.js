@@ -9,7 +9,7 @@ import {
   DropdownItem,
 } from "reactstrap";
 
-export default function NavbarDesktop() {
+export default function NavbarDesktop({userInfo}) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [place, setPlace] = useState("Hồ Chí Minh");
   const history = useHistory();
@@ -32,7 +32,18 @@ export default function NavbarDesktop() {
   const handleClickLogin = () => {
     history.push('/login')
   }
-
+  const handleClickLogout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+  }
+  const renderLogin = () => {
+    if (userInfo) {
+      return <p onClick={handleClickLogout}>Đăng xuất</p>
+    } else {
+      return <p onClick={handleClickLogin}>Đăng nhập</p>
+    }
+     
+  }
   return (
     <nav>
       <div className="navbar__content">
@@ -60,7 +71,8 @@ export default function NavbarDesktop() {
                 src={process.env.PUBLIC_URL + "/images/avatar.png"}
                 alt="avatar"
               />
-              <p onClick={handleClickLogin}>Đăng nhập</p>
+              {renderLogin()}
+              {/* <p onClick={handleClickLogin}>Đăng nhập</p> */}
             </a>
           </div>
           <Dropdown isOpen={dropdownOpen} toggle={toggle}>

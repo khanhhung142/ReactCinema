@@ -1,33 +1,65 @@
 .admin-custom {
-    &__sidenav {
-        background-color: #212529 !important;
+  &__sidenav {
+    background-color: #212529 !important;
+  }
+
+  .form {
+    margin-top: 30px;
+    .preview-img {
+      width: 360px;
+      height: 200px;
+      border-radius: 5px;
+      border: 1px dashed rgb(70, 184, 219);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+      color: rgb(70, 184, 219);
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.513);
+      }
     }
-    .form {
-        margin-top: 30px;
-        .preview-img {
-            width: 360px;
-            height: 200px;
-            border-radius: 5px;
-            border: 1px dashed rgb(70, 184, 219);
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 36px;
-            color: rgb(70, 184, 219);
-            &:hover {
-                background-color: rgba(255, 255, 255, 0.513);
-            }
-        }
-        .err-msg {
-            color: red;
-            padding: 10px 10px;
-        }
+    .err-msg {
+      color: red;
+      padding: 10px 10px;
     }
-    .btn-tb {
-        margin: 10px;
+  }
+  .btn-tb {
+    margin: 10px;
+  }
+  h1 {
+    margin-bottom: 30px;
+  }
+}
+
+.modalTix {
+  &__header {
+    h5 {
+      font-size: 1rem;
+      font-weight: bold;
     }
-    h1 {
-        margin-bottom: 30px;
+  }
+  &__body {
+    label {
+      margin: 5px;
+      font-size: 18px;
     }
+    img {
+      width: 100%;
+    }
+  }
+}
+.labelCommon {
+  margin: 5px;
+  font-size: 18px;
+}
+.warnCommon {
+  color: red;
+  font-size: 1rem;
+  position: absolute;
+  bottom: -30%;
+}
+.inputCommon {
+  margin-bottom: 2rem;
 }

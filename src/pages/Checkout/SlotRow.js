@@ -7,6 +7,7 @@ export default function SlotRow({
   vipSlot,
   bookingActive,
   handleActive,
+  handlePush,
 }) {
   // Hàm render số ghế ngồi. tham số là số lượng ghế render và vị trí bắt đầu trong mảng slots
   const renderSlot = (amount, startIndex) => {
@@ -147,6 +148,7 @@ export default function SlotRow({
         character
       );
     }
+    
   };
   return (
     <div className="slotRow row">

@@ -4,8 +4,8 @@ import FilmCard from "../../../components/FilmCard";
 export default function FilmBlockItem({films}) {
   return (
     <div className="filmBlock__content--item row container" id="showtime">
-      {films.map((item)=>(
-        <div key={films.maPhim} className="col-6 col-md-4 col-lg-3">
+      {films.map((item, index)=>(
+        <div key={index} className="col-6 col-md-4 col-lg-3">
           <FilmCard film = {item}/>
         </div>
       ))}

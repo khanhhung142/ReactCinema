@@ -13,10 +13,10 @@ export default function FilmCard({ film }) {
     const fullStar = Math.floor(danhGia / 2);
     const halfStar = danhGia % 2;
     for (let i = 0; i < fullStar; i++) {
-      star.push(<i class="fa fa-star"></i>);
+      star.push(<i key={i} class="fa fa-star"></i>);
     }
     if (halfStar !== 0) {
-      star.push(<i class="fa fa-star-half"></i>);
+      star.push(<i key={999} class="fa fa-star-half"></i>);
     }
   };
   return (

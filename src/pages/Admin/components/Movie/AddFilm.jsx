@@ -1,216 +1,250 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from 'reactstrap';
-import { ErrorMessage, FastField, Formik } from 'formik';
-import InputField from '../../../../components/form/InputField';
-import * as Yup from 'yup';
-
-
-
-const validationSchema = Yup.object().shape({
-    filmName: Yup.string()
-        .max(255, "Tên phim quá dài")
-        .required("Tên phim không được bỏ trống"),
-    filmId: Yup.string()
-        .required("Mã phim không được để trống"),
-    groupId: Yup.string()
-        .required("Mã nhóm phim không được để trống"),
-    startDate: Yup.string()
-        .required("Ngày khởi chiếu không được để trống"),
-    description: Yup.string()
-        .required("Mô tả phim không được để trống"),
-    trailer: Yup.string(),
-});
-
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import {
+  Button,
+  Col,
+  Container,
+  Row,
+} from "reactstrap";
+import InputField from "../../../../components/form/InputField";
+import * as Yup from "yup";
+import { useForm} from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import {addFilm} from '../../../../actions/filmActions'
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import { useSelector, useDispatch } from "react-redux";
 function AddFilm(props) {
+  const {data, error} = useSelector(state => state.addFilm);
+  const dispatch = useDispatch();
+  const schema = Yup.object().shape({
+    tenPhim: Yup.string()
+      .max(255, "Tên phim quá dài")
+      .required("Tên phim không được bỏ trống"),
+    maPhim: Yup.string().required("Mã phim không được để trống"),
+    ngayKhoiChieu: Yup.string().required("Ngày khởi chiếu không được để trống"),
+    moTa: Yup.string().required("Mô tả phim không được để trống"),
+    trailer: Yup.string()
+      .url("Trailer không hợp lệ")
+      .required("Trailer không được để trống"),
+    danhGia: Yup.number()
+      .nullable(true)
+      .typeError("Đánh giá phải là số")
+      .required("Đánh giá không được để trống")
+      .min(0, "Vui lòng nhập số lớn hơn 0")
+      .max(10, "Vui lòng nhập số dưới 10"),
+    hinhAnh: Yup.mixed().required("Hình ảnh không được để trống")
+    .test("20mb", "File quá lớn", (value) => {
+      return value && value[0].size <= 20000000; 
+    })
+    // .test("gif, png, jpg", "Sai định dạng file", (value) => {
+    //   return (
+    //     value &&
+    //     (value[0].type === "image/gif" ||
+    //       value[0].type === "image/jpg" ||
+    //       value[0].type === "image/png")
+    //   );
+    // }),
+  });
 
-    const [thumbnailPreview, setThumbnailPreview] = useState("");
-    const [bannerPreview, setBannerPreview] = useState("");
-
-    const initialValues = {
-        filmName: "",
-        filmId: "",
-        groupId: "",
-        startDate: "",
-        description: "",
-        trailer: "",
-        thumbnail: null,
-        banner: null,
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+  const inform = () => {
+    if (data) {
+      Swal.fire({
+        title: "Xóa phim thành công",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
     }
-    return (
-        <div className="add-flim">
-            <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-            >
-                {(formikProps) => {
-                    const {
-                        values,
-                        errors,
-                        touched,
-                        isSubmitting,
-                        handleSubmit,
-                    } = formikProps;
+    if (error) {
+      Swal.fire({
+        title: error,
+        icon: "warning",
+        confirmButtonText: "OK",
+      });
+    }
+  };
+  const handleAddFilm = (values) => {
+    let biDanh = values.tenPhim.toLowerCase().replace(/\s/g, '-');
+    const input = {...values, maNhom: "GP14", biDanh: biDanh}
+    let form_data = new FormData();
+    for (let key in input) {
+      form_data.append(key, input[key])
+    }
+    dispatch(addFilm(form_data,inform))
+  };
+  return (
+    <div className="add-flim">
+      <Container fluid>
+        <h1 className="mt-4">Thêm phim mới</h1>
+        <ol className="breadcrumb mb-4">
+          <li className="breadcrumb-item active">Dashboard / Add Film</li>
+        </ol>
+        <form className="form-group" onSubmit={handleSubmit(handleAddFilm)}>
+          <Row>
+            <Col md={9}>
+              <div style={{ position: "relative", marginTop: 0 }}>
+                <label for="tenPhim" className="labelCommon">
+                  Tên phim
+                </label>
+                <input
+                  name="tenPhim"
+                  type="text"
+                  {...register("tenPhim")}
+                  placeholder="VD: Thám tử lừng danh Conan - Viên đạn đỏ"
+                  className="form-control"
+                  style={{ marginBottom: 40 }}
+                />
+                {errors.tenPhim && (
+                  <div className="warnCommon">{errors.tenPhim.message}</div>
+                )}
+              </div>
+            </Col>
+            <Col md={3}>
+              <div style={{ position: "relative", marginTop: 0 }}>
+                <label for="danhGia" className="labelCommon">
+                  Đánh giá
+                </label>
+                <input
+                  name="danhGia"
+                  type="text"
+                  {...register("danhGia")}
+                  placeholder="Đánh giá trên thang điểm 10"
+                  className="form-control"
+                  style={{ marginBottom: 40 }}
+                />
+                {errors.danhGia && (
+                  <div className="warnCommon">{errors.danhGia.message}</div>
+                )}
+              </div>
+            </Col>
+          </Row>
 
-                    const handleThumbnailOnChange = (e) => {
-                        const file = e.currentTarget.files[0];
-                        // if (file) {
-                        formikProps.setFieldValue("thumbnail", file);
-                        const reader = new FileReader();
-                        reader.onloadend = () => {
-                            setThumbnailPreview(reader.result);
-                        };
-                        reader.readAsDataURL(file);
-                        // }
-                    };
-                    const handleBannerOnChange = (e) => {
-                        const file = e.currentTarget.files[0];
-                        // if (file) {
-                        formikProps.setFieldValue("banner", file);
-                        const reader = new FileReader();
-                        reader.onloadend = () => {
-                            setBannerPreview(reader.result);
-                        };
-                        reader.readAsDataURL(file);
-                        // }
-                    };
+          <Row xs={1} sm={2} md={3}>
+            <Col>
+              <div style={{ position: "relative", marginTop: 0 }}>
+                <label for="maPhim" className="labelCommon">
+                  Mã phim
+                </label>
+                <input
+                  name="maPhim"
+                  type="text"
+                  {...register("maPhim")}
+                  placeholder="VD: 1456"
+                  className="form-control"
+                  style={{ marginBottom: 40 }}
+                />
+                {errors.maPhim && (
+                  <div className="warnCommon">{errors.maPhim.message}</div>
+                )}
+              </div>
+            </Col>
+            <Col>
+              <div style={{ position: "relative", marginTop: 0 }}>
+                <label for="maNhom" className="labelCommon">
+                  Mã nhóm
+                </label>
+                <input
+                  name="maNhom"
+                  type="text"
+                  value="GP14"
+                  placeholder="GP14"
+                  className="form-control"
+                  style={{ marginBottom: 40 }}
+                  readonly
+                  disabled
+                />
+              </div>
+            </Col>
+            <Col>
+              <div style={{ position: "relative", marginTop: 0 }}>
+                <label for="ngayKhoiChieu" className="labelCommon">
+                  Ngày khởi chiếu
+                </label>
+                <input
+                  name="ngayKhoiChieu"
+                  type="date"
+                  className="form-control"
+                  {...register("ngayKhoiChieu")}
+                  style={{ marginBottom: 40 }}
+                />
+                {errors.ngayKhoiChieu && (
+                  <div className="warnCommon">
+                    {errors.ngayKhoiChieu.message}
+                  </div>
+                )}
+              </div>
+            </Col>
+          </Row>
+          <div style={{ position: "relative", marginTop: 0 }}>
+            <label for="moTa" className="labelCommon">
+              Mô tả
+            </label>
+            <textarea
+              name="moTa"
+              type="textarea"
+              {...register("moTa")}
+              rows="4"
+              className="form-control"
+              style={{ marginBottom: 40 }}
+            />
+            {errors.moTa && (
+              <div className="warnCommon">{errors.moTa.message}</div>
+            )}
+          </div>
 
+          <Row xs={1} md={2}>
+            <Col>
+              <div style={{ position: "relative", marginTop: 0 }}>
+                <label for="trailer" className="labelCommon">
+                  Trailer
+                </label>
+                <input
+                  name="trailer"
+                  type="text"
+                  {...register("trailer")}
+                  className="form-control"
+                  style={{ marginBottom: 40 }}
+                />
+                {errors.trailer && (
+                  <div className="warnCommon">{errors.trailer.message}</div>
+                )}
+              </div>
+            </Col>
+            <Col>
+              <div style={{ position: "relative", marginTop: 0 }}>
+                <label for="hinhAnh" className="labelCommon">
+                  Hình ảnh
+                </label>
+                <input
+                  name="hinhAnh"
+                  type="file"
+                  className="form-control-file"
+                  {...register("hinhAnh")}
+                  style={{ marginBottom: 40 }}
+                />
+                {errors.hinhAnh && (
+                  <div className="warnCommon">{errors.hinhAnh.message}</div>
+                )}
+              </div>
+            </Col>
+          </Row>
 
-                    return (
-                        <Container fluid>
-                            <h1 className="mt-4">Thêm phim mới</h1>
-                            <ol className="breadcrumb mb-4">
-                                <li className="breadcrumb-item active">Dashboard / Add Film</li>
-                            </ol>
-                            <Form className="form">
-                                <FastField
-                                    name="filmName"
-                                    component={InputField}
-                                    type="text"
-                                    label="Tên phim :"
-                                    placeholder="VD: Thám tử lừng danh Conan - Viên đạn đỏ"
-                                />
-                                <Row xs={1} sm={2} md={3}>
+          <Button
+            className="btn my-2 ml-auto d-block"
+            color="success"
 
-                                    <Col>
-
-                                        <FastField
-                                            name="filmId"
-                                            component={InputField}
-                                            type="text"
-                                            label="Mã phim :"
-                                        />
-                                    </Col>
-                                    <Col>
-                                        <FastField
-                                            name="groupId"
-                                            component={InputField}
-                                            type="text"
-                                            label="Mã nhóm :"
-                                        />
-                                    </Col>
-                                    <Col>
-                                        <FastField
-                                            name="startDate"
-                                            component={InputField}
-                                            type="date"
-                                            label="Ngày khởi chiếu :"
-                                        />
-                                    </Col>
-                                </Row>
-                                <FastField
-                                    name="description"
-                                    component={InputField}
-                                    type="textarea"
-                                    label="Mô tả phim"
-                                    rows={5}
-                                />
-
-
-                                <FastField
-                                    name="trailer"
-                                    component={InputField}
-                                    type="text"
-                                    label="Trailer :"
-                                />
-
-
-                                <Row xs={1} md={2}>
-                                    <Col>
-                                        <FastField
-                                            name="thumbnail"
-                                            component={InputField}
-                                            type="file"
-                                            label="Thumbnail :"
-                                            hidden={true}
-                                            onChange={handleThumbnailOnChange}
-                                        />
-
-                                        <div>
-                                            <label htmlFor="thumbnail">
-                                                <div className="preview-img">
-                                                    {values.thumbnail ? (
-                                                        <img
-                                                            alt="preview-image"
-                                                            width="100%"
-                                                            height="100%"
-                                                            src={thumbnailPreview}
-                                                        ></img>
-                                                    ) : (
-                                                        "+"
-                                                    )}
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </Col>
-                                    <Col>
-                                        <FastField
-                                            name="banner"
-                                            component={InputField}
-                                            type="file"
-                                            label="Banner :"
-                                            hidden={true}
-                                            onChange={handleBannerOnChange}
-                                        />
-
-                                        <div>
-                                            <label htmlFor="banner">
-                                                <div className="preview-img">
-                                                    {values.banner ? (
-                                                        <img
-                                                            alt="preview-image"
-                                                            width="100%"
-                                                            height="100%"
-                                                            src={bannerPreview}
-                                                        ></img>
-                                                    ) : (
-                                                        "+"
-                                                    )}
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </Col>
-
-
-                                </Row>
-
-
-
-                                <Button
-                                    className="btn my-2 ml-auto d-block"
-                                    color="success"
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                >
-                                    Thêm
-                                </Button>
-                            </Form>
-                        </Container>
-                    );
-                }}
-            </Formik>
-        </div>
-    );
+            // disabled={isSubmitting}
+          >
+            Thêm
+          </Button>
+        </form>
+      </Container>
+    </div>
+  );
 }
 
 export default AddFilm;

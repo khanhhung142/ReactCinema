@@ -25,6 +25,15 @@ const filmAPI = {
       MaPhim:filmId
     }
     return axiosClient.get("/QuanLyRap/LayThongTinLichChieuPhim", {params});
+  },
+  deleteFilm: (filmId) => {
+    const params = {
+      MaPhim : filmId
+    }
+    return axiosClient.delete("/QuanLyPhim/XoaPhim", {params});
+  },
+  addFilm: (values) => {
+    return axiosClient.post("/QuanLyPhim/ThemPhimUploadHinh", values)
   }
   // getFilmByDays: (from, to) => {
   //   const params = {

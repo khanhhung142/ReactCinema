@@ -5,7 +5,6 @@ export default function FilmSchedule({ info, index, isHome }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const renderCollapse = () => {
-    
     if (isHome) {
       return (
         <Collapse isOpen={isOpen} className="row pt-2 px-5">

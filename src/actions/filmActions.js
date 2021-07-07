@@ -11,6 +11,12 @@ import {
   GET_FILMSCHEDULE_FAILTURE,
   GET_FILMSCHEDULE_REQUEST,
   GET_FILMSCHEDULE_SUCCESS,
+  DELETE_FILM_FAILTURE,
+  DELETE_FILM_REQUEST,
+  DELETE_FILM_SUCCESS,
+  ADD_FILM_FAILTURE,
+  ADD_FILM_REQUEST,
+  ADD_FILM_SUCCESS
 } from "../constants/filmConstants";
 // import axios from "axios";
 import filmAPI from "../services/filmsAPI";
@@ -30,7 +36,7 @@ export const getFlims = () => {
       // Gọi api thất bại => dispatch action failure
       dispatch({
         type: GET_FILMLIST_FAILTURE,
-        payload: error.response,
+        payload: {error: error.response.data}
       });
     }
   };
@@ -50,13 +56,13 @@ export const getFilmPage = (currentPageIn, countIn) => {
     }catch (error) {
       dispatch({
         type: GET_FILMPAGE_FAILTURE,
-        payload: error.response
+        payload: {error: error.response.data}
       })
     }
   }
 }
 
-export const getFilmInfo = (filmId) => {
+export const getFilmInfo = (filmId, doSomething) => {
   return async (dispatch) => {
     dispatch({type: GET_FILMINFO_REQUEST});
     try {
@@ -70,9 +76,10 @@ export const getFilmInfo = (filmId) => {
     }catch (error) {
       dispatch({
         type: GET_FILMINFO_FAILTURE,
-        payload: error.response
+        payload: {error: error.response.data}
       })
     }
+    doSomething()
   }
 }
 export const getFilmSchedule = (filmId) => {
@@ -89,9 +96,49 @@ export const getFilmSchedule = (filmId) => {
     }catch (error) {
       dispatch({
         type: GET_FILMSCHEDULE_FAILTURE,
-        payload: error.response
+        payload: {error: error.response.data}
       })
     }
+  }
+}
+export const deleteFilm = (filmId, doSomething) => {
+  return async (dispatch) => {
+    dispatch({type: DELETE_FILM_REQUEST});
+    try {
+      const {data} = await filmAPI.deleteFilm(filmId);
+      // const {currentPage, count, ...dataFilted} = data;
+      // console.log(dataFilted)
+      dispatch({
+        type: DELETE_FILM_SUCCESS,
+        payload: {data},
+      });
+    }catch (error) {
+      dispatch({
+        type: DELETE_FILM_FAILTURE,
+        payload: {error: error.response.data}
+      })
+    }
+    doSomething()
+  }
+}
+export const addFilm = (values, doSomething) => {
+  return async (dispatch) => {
+    dispatch({type: ADD_FILM_REQUEST});
+    try {
+      const {data} = await filmAPI.addFilm(values);
+      // const {currentPage, count, ...dataFilted} = data;
+      // console.log(dataFilted)
+      dispatch({
+        type: ADD_FILM_SUCCESS,
+        payload: {data},
+      });
+    }catch (error) {
+      dispatch({
+        type: ADD_FILM_FAILTURE,
+        payload: {error: error.response.data}
+      })
+    }
+    doSomething()
   }
 }
 // export const getFilmByDays = (from, to) => {

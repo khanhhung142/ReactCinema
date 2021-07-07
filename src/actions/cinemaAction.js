@@ -11,6 +11,9 @@ import {
   GET_SLOTS_FAILTURE,
   GET_SLOTS_REQUEST,
   GET_SLOTS_SUCCESS,
+  BOOKING_FAILTURE,
+  BOOKING_REQUEST,
+  BOOKING_SUCCESS
 } from "../constants/cinemaConstants";
 import cinemaAPI from "../services/cinemaAPI";
 
@@ -26,7 +29,7 @@ export const getCinemaBrands = () => {
     } catch (error) {
       dispatch({
         type: GET_CINEMABRAND_FAILTURE,
-        payload: error.response,
+        payload: {error: error.response.data}
       });
     }
   };
@@ -43,7 +46,7 @@ export const getTheaters = (activeID) => {
     } catch (error) {
       dispatch({
         type: GET_THEATER_FAILTURE,
-        payload: error.response,
+        payload: {error: error.response.data}
       });
     }
   };
@@ -60,7 +63,7 @@ export const getScheduleOnTheater = (cinema) => {
     } catch (error) {
       dispatch({
         type: GET_SCHEDULE_FAILTURE,
-        payload: error,
+        payload: {error: error.response.data}
       });
     }
   };
@@ -78,7 +81,25 @@ export const getSlots = (cinema) => {
     } catch (error) {
       dispatch({
         type: GET_SLOTS_FAILTURE,
-        payload: error,
+        payload: {error: error.response.data}
+      });
+    }
+  };
+};
+
+export const booking = (values) => {
+  return async (dispatch) => {
+    dispatch({ type: BOOKING_REQUEST });
+    try {
+      const { data } = await cinemaAPI.booking(values);
+      dispatch({
+        type: BOOKING_SUCCESS,
+        payload: {data},
+      });
+    } catch (error) {
+      dispatch({
+        type: BOOKING_FAILTURE,
+        payload: {error: error.response},
       });
     }
   };

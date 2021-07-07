@@ -6,6 +6,7 @@ import NowShowing from "./FilmBlock/NowShowing";
 import useWindownResize from "../../hook/useWindownResize";
 import CinemaComplex from "../../components/CinemaComplex";
 import Banner from "./Banner";
+import LoadingPage from "../LoadingPage";
 //import { computeHeadingLevel } from "@testing-library/react";
 //import LoadingPage from "../LoadingPage";
 
@@ -15,7 +16,7 @@ export default function Home() {
   const refNowShowing = useRef("");
   const refCommingSoon = useRef("");
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.filmList);
+  const { data, isLoading } = useSelector((state) => state.filmList);
   const middle = Math.ceil(data.length / 2);
   useEffect(() => {
     dispatch(getFlims());
@@ -38,45 +39,51 @@ export default function Home() {
     }
     return false;
   };
-  return (
-    <div className="warrper">
-      <div className="mainCarousel">
-        {isMobileClient() ? null : <MainCarousel />}
-      </div>
-      <div className="filmBlock container">
-        <div className="filmBlock__toggle">
-          <h1
-            onClick={() => toggleActiveNowShowing()}
-            className={active ? "active" : ""}
-            ref={refNowShowing}
-          >
-            Đang chiếu
-          </h1>
-          <h1
-            onClick={() => toggleActiveCommingSoon()}
-            className={active ? "" : "active"}
-            ref={refCommingSoon}
-          >
-            Sắp chiếu
-          </h1>
+  // if (isLoading) {
+  //   <LoadingPage />
+  // }
+  // if (!isLoading) {
+    return (
+      <div className="warrper">
+        <div className="mainCarousel">
+          {isMobileClient() ? null : <MainCarousel />}
         </div>
-        <div className="filmBlock__content mt-5">
-          {active ? (
-            <NowShowing filmList={data.slice(0, middle)} />
-          ) : (
-            <NowShowing filmList={data.slice(middle, data.length)} />
-          )}
+        <div className="filmBlock container">
+          <div className="filmBlock__toggle">
+            <h1
+              onClick={() => toggleActiveNowShowing()}
+              className={active ? "active" : ""}
+              ref={refNowShowing}
+            >
+              Đang chiếu
+            </h1>
+            <h1
+              onClick={() => toggleActiveCommingSoon()}
+              className={active ? "" : "active"}
+              ref={refCommingSoon}
+            >
+              Sắp chiếu
+            </h1>
+          </div>
+          <div className="filmBlock__content mt-5">
+            {active ? (
+              <NowShowing filmList={data.slice(0, middle)} />
+            ) : (
+              <NowShowing filmList={data.slice(middle, data.length)} />
+            )}
+          </div>
+        </div>
+        <div className="cinemaBlock mb-5">
+          <CinemaComplex isHome={true}/>
+        </div>
+        <div
+          className="banner row"
+          style={{ backgroundImage: `url("./images/backapp.jpg")` }}
+        >
+          <Banner />
         </div>
       </div>
-      <div className="cinemaBlock mb-5">
-        <CinemaComplex isHome={true}/>
-      </div>
-      <div
-        className="banner row"
-        style={{ backgroundImage: `url("./images/backapp.jpg")` }}
-      >
-        <Banner />
-      </div>
-    </div>
-  );
+    );
+  // }
+ 
 }

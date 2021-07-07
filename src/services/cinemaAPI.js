@@ -21,6 +21,9 @@ const cinemaAPI = {
       MaLichChieu:scheduleID,
     }
     return axiosClient.get("/QuanLyDatVe/LayDanhSachPhongVe", {params});
+  },
+  booking:(values) => {
+    return axiosClient.post("/QuanLyDatVe/DatVe", values)
   }
 }
 

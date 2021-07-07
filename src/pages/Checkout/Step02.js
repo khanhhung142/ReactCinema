@@ -1,15 +1,35 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { useHistory } from "react-router-dom";
-import { listSlot } from "../../data/data";
 import Countdown from "./Countdown";
 import SlotRow from "./SlotRow";
+import { useSelector, useDispatch } from "react-redux";
+import { booking } from "../../actions/cinemaAction";
 export default function Step02({ ...props }) {
-  const history = useHistory()
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.booking);
+  let values = {
+    maLichChieu: props.scheduleID,
+    danhSachGhe: [],
+    taiKhoanNguoiDung: props.userInfo.taiKhoan,
+  };
   const [slot, setSlot] = useState("");
   const [bookingActive, setBookingActive] = useState([]);
   const [standardSlot, setStandardSlot] = useState(props.standard);
   const [vipSlot, setVipSlot] = useState(props.vip);
+  const handleConfirm = async () => {
+    await bookingActive.map((item) => {
+      const index = parseInt(
+        props.danhSachGhe.map((item) => item.stt).indexOf(item)
+      );
+      values.danhSachGhe.push({
+        maGhe: props.danhSachGhe[index].maGhe,
+        giaVe: props.danhSachGhe[index].giaVe,
+      });
+    });
+    dispatch(booking(values));
+  };
   // Hàm handleBooking xử lý trường hợp khách hàng chưa chọn đủ số ghế đã ấn đặt vé
   const handleBooking = () => {
     if (standardSlot === props.standard || vipSlot === props.vip) {
@@ -20,12 +40,13 @@ export default function Step02({ ...props }) {
       });
     }
     if (standardSlot === 0 && vipSlot === 0) {
-      Swal.fire({
-        title: "Đặt vé thành công",
-        icon: "success",
-        confirmButtonText: "OK",
-      });
-      history.goBack()
+      handleConfirm();
+        Swal.fire({
+          title: "Đặt vé thành công",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        history.goBack()
     }
     return;
   };
@@ -57,11 +78,11 @@ export default function Step02({ ...props }) {
         setStandardSlot(standardSlot + 1);
       }
       const filterActive = bookingActive.filter((item) => item !== stt);
-      setBookingActive(filterActive)
-      const filterSlot = slot.filter((item) => item !== (character + stt + " "));
+      setBookingActive(filterActive);
+      const filterSlot = slot.filter((item) => item !== character + stt + " ");
       setSlot(filterSlot);
     }
-  }
+  };
   return (
     <div className="checkout__step02">
       <div className="checkout__step02--sideBar hideMobile">
@@ -71,10 +92,14 @@ export default function Step02({ ...props }) {
           </div>
           <div className="info item">
             <h1>
-              <span>C16</span>{props.thongTinPhim.tenPhim}
+              <span>C16</span>
+              {props.thongTinPhim.tenPhim}
             </h1>
             <p>{props.thongTinPhim.tenCumRap}</p>
-            <p>{props.thongTinPhim.ngayChieu} - {props.thongTinPhim.gioChieu} - {props.thongTinPhim.tenRap}</p>
+            <p>
+              {props.thongTinPhim.ngayChieu} - {props.thongTinPhim.gioChieu} -{" "}
+              {props.thongTinPhim.tenRap}
+            </p>
           </div>
           <div className="ticket item userInfo">
             <p>Ghế {slot}</p>
@@ -82,11 +107,11 @@ export default function Step02({ ...props }) {
           </div>
           <div className="email item userInfo text">
             <p>Email</p>
-            <h1>123@gmail.com</h1>
+            <h1>{props.userInfo.email}</h1>
           </div>
           <div className="phone item userInfo text">
-            <p>Phone</p>
-            <h1>19091991</h1>
+            <p>Họ tên</p>
+            <h1>{props.userInfo.hoTen}</h1>
           </div>
           <div className="pay item userInfo text">
             <p>Hình thức thanh toán</p>
@@ -117,7 +142,10 @@ export default function Step02({ ...props }) {
         <div className="info">
           <div className="cinemaInfo">
             <h1>{props.thongTinPhim.tenCumRap}</h1>
-            <p>{props.thongTinPhim.ngayChieu} - {props.thongTinPhim.gioChieu} - {props.thongTinPhim.tenRap}</p>
+            <p>
+              {props.thongTinPhim.ngayChieu} - {props.thongTinPhim.gioChieu} -{" "}
+              {props.thongTinPhim.tenRap}
+            </p>
           </div>
           <div className="countdown">
             <p>Thời gian giữ ghế</p>
@@ -138,7 +166,11 @@ export default function Step02({ ...props }) {
                 <SlotRow
                   key={index}
                   character={String.fromCharCode(65 + index / 16)}
-                  slots={props.danhSachGhe.slice(index, index + 16)} standardSlot={standardSlot} vipSlot={vipSlot} bookingActive={bookingActive} handleActive={handleActive}
+                  slots={props.danhSachGhe.slice(index, index + 16)}
+                  standardSlot={standardSlot}
+                  vipSlot={vipSlot}
+                  bookingActive={bookingActive}
+                  handleActive={handleActive}
                 />
               );
             }
