@@ -62,7 +62,7 @@ export const getFilmPage = (currentPageIn, countIn) => {
   }
 }
 
-export const getFilmInfo = (filmId, doSomething) => {
+export const getFilmInfo = (filmId) => {
   return async (dispatch) => {
     dispatch({type: GET_FILMINFO_REQUEST});
     try {
@@ -79,7 +79,7 @@ export const getFilmInfo = (filmId, doSomething) => {
         payload: {error: error.response.data}
       })
     }
-    doSomething()
+    // doSomething()
   }
 }
 export const getFilmSchedule = (filmId) => {

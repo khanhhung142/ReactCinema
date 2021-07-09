@@ -228,7 +228,7 @@ function FilmList(props) {
               </div>
               <div className="col-12 col-lg-7">
                 <label for="tenPhim">Tên phim</label>
-                <input  value={filmInfo.tenPhim} name="tenPhim" />
+                <Input  value={filmInfo.tenPhim} name="tenPhim" />
                 <label for="trailer">Trailer</label>
                 {/* <InputGroup> */}
                 <InputGroupAddon

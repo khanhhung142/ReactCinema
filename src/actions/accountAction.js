@@ -8,7 +8,7 @@ import {
   POST_SIGNIN_SUCCESS
 } from "../constants/accountConstants";
 
-export const postLogin = (values, doSomething) => {
+export const postLogin = (values) => {
   return async (dispatch) => {
     dispatch({ type: POST_LOGIN_REQUEST });
     try {
@@ -24,11 +24,11 @@ export const postLogin = (values, doSomething) => {
         payload: {error: error.response.data}
       });
     }
-    doSomething()
+   // doSomething()
   };
 };
 
-export const postSignIn = (values, doSomething) => {
+export const postSignIn = (values,) => {
   return async (dispatch) => {
     dispatch({ type: POST_SIGNIN_REQUEST });
     try {
@@ -37,7 +37,7 @@ export const postSignIn = (values, doSomething) => {
         type: POST_SIGNIN_SUCCESS,
         payload: { data },
       });
-      doSomething()
+     // doSomething()
     } catch (error) {
       dispatch({
         type: POST_SIGNIN_FAILTURE,
