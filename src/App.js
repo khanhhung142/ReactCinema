@@ -33,9 +33,9 @@ const App = () => {
             <AdminRoute path="/login-as-admin">
               <LoginAsAdmin />
             </AdminRoute>
-          {/* //  <AdminRoute > */}
-              <Checkout path="/checkout/:scheduleID" exact/>
-         {/* //   </AdminRoute> */}
+            <Route  path="/checkout/:scheduleID" exact >
+              <Checkout/>
+           </Route>
   
             {/* Route main */}
             <Route path="/">

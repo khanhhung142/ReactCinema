@@ -53,7 +53,7 @@ export default function FilmDetail() {
               }}
             >
               <div className="imgBanner--trailer">
-                <PopupVideo trailer="https://www.youtube.com/embed/VagES3pxttQ" />
+                <PopupVideo trailer={data.trailer} />
               </div>
             </div>
             <div className="col-5 mainInfo">
