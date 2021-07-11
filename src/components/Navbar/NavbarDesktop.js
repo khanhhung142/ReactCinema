@@ -62,7 +62,7 @@ export default function NavbarDesktop({userInfo}) {
           <a href="#showtime">Lịch chiếu</a>
           <a href="#cinema">Cụm rạp</a>
           <a href="#">Tin tức</a>
-          <a href="#app">Ứng dụng</a>
+          <a href="#app">Admin</a>
         </div>
         <div className="navbar__login">
           <div className="navbar__login--avatar">

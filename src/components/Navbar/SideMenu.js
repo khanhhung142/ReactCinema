@@ -26,7 +26,7 @@ export default function SideMenu({ toggle }) {
           <a href="#showtime">Lịch chiếu</a>
           <a href="#theaters">Cụm rạp</a>
           <a href="#">Tin tức</a>
-          <a href="#app">Ứng dụng</a>
+          <a href="#app">Admin</a>
           <a href="#">Hồ Chí Minh</a>
         </div>
       </div>

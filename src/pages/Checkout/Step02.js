@@ -18,6 +18,7 @@ export default function Step02({ ...props }) {
   const [bookingActive, setBookingActive] = useState([]);
   const [standardSlot, setStandardSlot] = useState(props.standard);
   const [vipSlot, setVipSlot] = useState(props.vip);
+  const full = props.standard + props.vip;
   const handleConfirm = async () => {
     await bookingActive.map((item) => {
       const index = parseInt(
@@ -41,12 +42,12 @@ export default function Step02({ ...props }) {
     }
     if (standardSlot === 0 && vipSlot === 0) {
       handleConfirm();
-        Swal.fire({
-          title: "Đặt vé thành công",
-          icon: "success",
-          confirmButtonText: "OK",
-        });
-        history.goBack()
+      Swal.fire({
+        title: "Đặt vé thành công",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      history.goBack();
     }
     return;
   };
@@ -68,7 +69,9 @@ export default function Step02({ ...props }) {
       if (type === "standard") {
         setStandardSlot(standardSlot - 1);
       }
+
       setBookingActive([...bookingActive, stt]);
+      console.log(bookingActive);
       setSlot([...slot, character + stt + " "]);
     } else if (!isActive) {
       if (type === "vip") {
@@ -131,7 +134,9 @@ export default function Step02({ ...props }) {
         </div>
         <div className="buyBtn">
           <button
-            className={bookingActive.length === 0 ? "nonActive" : "greenButton"}
+            className={
+              bookingActive.length !== full ? "nonActive" : "greenButton"
+            }
             onClick={() => handleBooking()}
           >
             <span>Đặt vé</span>
@@ -193,6 +198,16 @@ export default function Step02({ ...props }) {
               <div className="slot disable"></div>
               <p>Ghế không thể chọn</p>
             </div>
+          </div>
+          <div className="buyBtn hideDesktop">
+            <button
+              className={
+                bookingActive.length !== full ? "nonActive" : "greenButton"
+              }
+              onClick={() => handleBooking()}
+            >
+              <span>Đặt vé</span>
+            </button>
           </div>
         </div>
       </div>
