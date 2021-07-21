@@ -84,7 +84,7 @@ export default function ListCinema({ cinema, isHome, filmID }) {
                 <h1>{item.tenCumRap}</h1>
                 <p>{item.diaChi}</p>
                 <span>
-                  Chi tiết <i class="fa fa-angle-right"></i>
+                  Chi tiết <i className="fa fa-angle-right"></i>
                 </span>
               </div>
             </div>

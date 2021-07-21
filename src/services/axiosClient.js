@@ -17,7 +17,7 @@ axiosClient.interceptors.request.use(
       config.headers.Authorization = `Bearer ${accessToken}`
       
     }
-    console.log(config)
+    // console.log(config)
     return config
   },
   // Xử lý khi request bị lỗi

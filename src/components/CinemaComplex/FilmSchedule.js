@@ -124,9 +124,9 @@ export default function FilmSchedule({ info, index, isHome }) {
           </div>
           <div className="arrow">
             {isOpen ? (
-              <i class="fa fa-angle-up"></i>
+              <i className="fa fa-angle-up"></i>
             ) : (
-              <i class="fa fa-angle-down"></i>
+              <i className="fa fa-angle-down"></i>
             )}
           </div>
         </div>

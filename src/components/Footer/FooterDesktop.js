@@ -164,19 +164,19 @@ export default function FooterDesktop() {
         <div className="col-lg-2">
           <h1>MOBILE APP</h1>
           <Link to="/faq">
-            <i class="fab fa-apple mr-2"></i>
+            <i className="fab fa-apple mr-2"></i>
           </Link>
           <Link to="/faq">
-            <i class="fa fa-mobile"></i>
+            <i className="fa fa-mobile"></i>
           </Link>
         </div>
         <div className="col-lg-2">
           <h1 className="pl-4">SOCIAL</h1>
           <Link to="/faq">
-            <i class="fab fa-facebook mr-2"></i>
+            <i className="fab fa-facebook mr-2"></i>
           </Link>
           <Link to="/faq">
-            <i class="fab fa-twitter"></i>
+            <i className="fab fa-twitter"></i>
           </Link>
         </div>
       </div>

@@ -13,7 +13,7 @@ export default function PopupVideo({ trailer }) {
   return (
     <div>
       <div className="play-button" onClick={toggle}>
-        <i class="fa fa-play"></i>
+        <i className="fa fa-play"></i>
       </div>
       <Modal isOpen={modal} toggle={toggle} size="lg" >
         <div className="videoContainer">

@@ -13,10 +13,10 @@ export default function FooterMobile() {
       </div>
       <div className="col-7 pl-5">
         <Link to="/faq">
-          <i class="fab fa-facebook mr-2"></i>
+          <i className="fab fa-facebook mr-2"></i>
         </Link>
         <Link to="/faq">
-          <i class="fab fa-twitter"></i>
+          <i className="fab fa-twitter"></i>
         </Link>
       </div>
     </div>

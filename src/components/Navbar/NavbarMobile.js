@@ -10,7 +10,7 @@ export default function NavbarMobile() {
       <div className="navbar__content">
         <Link to="/">
           <div className="navbar__logo">
-            <a href="#">
+            <a href="#1">
               <img
                 src={process.env.PUBLIC_URL + "/images/web-logo.png"}
                 alt="logo"
