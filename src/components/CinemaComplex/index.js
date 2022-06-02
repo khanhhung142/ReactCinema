@@ -4,7 +4,7 @@ import ListCinema from "./ListCinema";
 import { useSelector, useDispatch } from "react-redux";
 export default function CinemaComplex({isHome, filmID}) {
   const { data } = useSelector((state) => state.cinemaBrand);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getCinemaBrands());
   }, []);

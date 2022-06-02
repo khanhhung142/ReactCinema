@@ -11,7 +11,7 @@ const cinemaAPI = {
   },
   getSchedules: (cinema) => {
     const params = {
-      maNhom: "GP14",
+      maNhom: "GP01",
       maHeThongRap: cinema,
     }
     return axiosClient.get("QuanLyRap/LayThongTinLichChieuHeThongRap", {params});

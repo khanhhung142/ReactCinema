@@ -69,7 +69,7 @@ function AddFilm(props) {
   };
   const handleAddFilm = (values) => {
     let biDanh = values.tenPhim.toLowerCase().replace(/\s/g, '-');
-    const input = {...values, maNhom: "GP14", biDanh: biDanh}
+    const input = {...values, maNhom: "GP01", biDanh: biDanh}
     let form_data = new FormData();
     for (let key in input) {
       form_data.append(key, input[key])
@@ -150,8 +150,8 @@ function AddFilm(props) {
                 <input
                   name="maNhom"
                   type="text"
-                  value="GP14"
-                  placeholder="GP14"
+                  value="GP01"
+                  placeholder="GP01"
                   className="form-control"
                   style={{ marginBottom: 40 }}
                   readonly

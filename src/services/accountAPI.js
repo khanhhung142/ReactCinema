@@ -5,7 +5,7 @@ const accountAPI = {
   },
   postSignIn: (values) => {
     const params = {
-      ...values, maNhom: "GP14", maLoaiNguoiDung: "KhachHang"
+      ...values, maNhom: "GP01", maLoaiNguoiDung: "KhachHang"
     }
     return axiosClient.post("/QuanLyNguoiDung/DangKy", {params});
   }

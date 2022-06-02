@@ -2,13 +2,13 @@ import axiosClient from "./axiosClient";
 const filmAPI = {
   getFilmList: () => {
     const params = {
-      maNhom: "GP14",
+      maNhom: "GP01",
     };
     return axiosClient.get("/QuanLyPhim/LayDanhSachPhim", {params});
   },
   getFilmPage: (currentPage, count) => {
     const params = {
-      maNhom: "GP14",
+      maNhom: "GP01",
       soTrang: currentPage,
       soPhanTuTrenTrang: count,
     }
